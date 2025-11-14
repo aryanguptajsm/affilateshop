@@ -1,24 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>IndiaShop – Best Deals Every Day</title>
-  <link rel="stylesheet" href="styles/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indias best deals </title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">AffilateShop</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#login">Login</a></li>
+        </ul>
+        <button id="theme-toggle">🌙</button>
+    </nav>
 
-<header class="header">
-  <div class="logo">IndiaShop</div>
-  <input type="text" placeholder="Search for products..." class="search">
-</header>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Welcome to Affiliate Shop</h1>
+        <p>Buy premium products from trusted affiliates.</p>
+    </section>
 
-<section class="hero">
-  <img src="assets/hero-banner.jpg" alt="">
-</section>
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <h2>Products</h2>
+        <div class="product-grid" id="product-grid">
+            <!-- Products will be loaded here via API -->
+        </div>
+    </section>
 
-<h2 class="title">🔥 Today’s Best Deals</h2>
-<div class="product-grid" id="productList"></div>
+    <!-- Login/Register Section -->
+    <section id="login" class="login-section">
+        <h2>Login / Register</h2>
+        <div class="auth-container">
+            <form id="register-form">
+                <h3>Register</h3>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
 
-<script src="scripts/app.js"></script>
+            <form id="login-form">
+                <h3>Login</h3>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div id="message"></div>
+    </section>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
