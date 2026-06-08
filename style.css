@@ -214,4 +214,7 @@ body.dark .auth-container form {
     .navbar {
         padding: 15px 20px;
     }
+    .product {
+        margin:1vm;
+    }
 }
