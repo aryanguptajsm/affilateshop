@@ -4,10 +4,6 @@ toggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 });
-
-// API URL
-const API_URL = "https://affilateshop-backend.onrender.com";
-
 // Load Products
 async function loadProducts() {
     try {
