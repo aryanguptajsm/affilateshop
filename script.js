@@ -50,9 +50,6 @@ registerForm.addEventListener('submit', async (e) => {
         showMessage("Registration failed");
     }
 });
-
-// Login Form
-
 // Message Display
 function showMessage(msg){
     const messageDiv = document.getElementById('message');
