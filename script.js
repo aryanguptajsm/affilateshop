@@ -52,29 +52,6 @@ registerForm.addEventListener('submit', async (e) => {
 });
 
 // Login Form
-const loginForm = document.getElementById('login-form');
-loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(loginForm);
-    const data = Object.fromEntries(formData.entries());
-
-    try {
-        const res = await fetch(`${API_URL}/login`, {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(data)
-        });
-        const result = await res.json();
-        if(result.token){
-            localStorage.setItem("authToken", result.token);
-            showMessage("Login successful");
-        } else {
-            showMessage(result.message);
-        }
-    } catch (error) {
-        showMessage("Login failed");
-    }
-});
 
 // Message Display
 function showMessage(msg){
