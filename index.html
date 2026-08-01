@@ -3,34 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>indias best deals </title>
+    <title>Movie Finder</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">Shop</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#login">Login</a></li>
-        </ul>
-        <button id="theme-toggle">🌙</button>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1>Welcome to Shop</h1>
-        <p>Buy premium products from trusted shop.</p>
-    </section>
+<div class="container">
 
-    <!-- Products Section -->
-    <section id="products" class="products-section">
-        <h2>Products</h2>
-        <div class="product-grid" id="product-grid">
-            <!-- Products will be loaded here via API -->
+    <h1>🎬 Movie Finder</h1>
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="search"
+            placeholder="Search any movie..."
+        >
+
+        <button id="btn">Search</button>
+    </div>
+
+    <div class="movie-card">
+
+        <img
+            id="poster"
+            src="https://placehold.co/300x450?text=Movie+Poster"
+            alt="Movie Poster"
+        >
+
+        <div class="details">
+
+            <h2 id="title">Movie Title</h2>
+
+            <p><strong>⭐ Rating:</strong> <span id="rating">8.5</span></p>
+
+            <p><strong>📅 Year:</strong> <span id="year">2023</span></p>
+
+            <p><strong>🎭 Genre:</strong> <span id="genre">Action</span></p>
+
+            <p><strong>⏱ Runtime:</strong> <span id="runtime">120 min</span></p>
+
+            <p><strong>🎬 Director:</strong> <span id="director">John Doe</span></p>
+
+            <p id="plot">
+                Search a movie to see its description.
+            </p>
+
         </div>
-    </section>
-    <script src="script.js"></script>
+
+    </div>
+
+</div>
+
 </body>
 </html>
