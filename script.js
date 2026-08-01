@@ -1,1 +1,2 @@
-const input = document.querySelector("searchInput")
+const input = document.querySelector("#searchInput");
+console.log(input);
