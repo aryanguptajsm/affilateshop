@@ -126,7 +126,7 @@
   /* ---------- Featured film ---------- */
   .stage{
     max-width:920px;
-    margin:50px 5px;
+    margin:50px auto;
     padding:0 24px;
   }
  
