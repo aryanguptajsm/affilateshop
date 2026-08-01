@@ -7,52 +7,72 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="container">
-
-    <h1>🎬 Movie Finder</h1>
-
-    <div class="search-box">
-        <input
-            type="text"
-            id="search"
-            placeholder="Search any movie..."
-        >
-
-        <button id="btn">Search</button>
+   
+  <div class="filmstrip">
+    <div class="holes">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
     </div>
-
-    <div class="movie-card">
-
-        <img
-            id="poster"
-            src="https://placehold.co/300x450?text=Movie+Poster"
-            alt="Movie Poster"
-        >
-
-        <div class="details">
-
-            <h2 id="title">Movie Title</h2>
-
-            <p><strong>⭐ Rating:</strong> <span id="rating">8.5</span></p>
-
-            <p><strong>📅 Year:</strong> <span id="year">2023</span></p>
-
-            <p><strong>🎭 Genre:</strong> <span id="genre">Action</span></p>
-
-            <p><strong>⏱ Runtime:</strong> <span id="runtime">120 min</span></p>
-
-            <p><strong>🎬 Director:</strong> <span id="director">John Doe</span></p>
-
-            <p id="plot">
-                Search a movie to see its description.
-            </p>
-
+  </div>
+ 
+  <header>
+    <div class="eyebrow">Now Screening</div>
+    <h1 class="marquee">MOVIE<span>FINDER</span></h1>
+    <p class="sub">Search for a title. No accounts, no clutter — just something good to watch tonight.</p>
+  </header>
+ 
+  <div class="controls">
+    <div class="search-bar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input id="searchInput" type="text" placeholder="Search titles..." autocomplete="off">
+    </div>
+  </div>
+ 
+  <div class="stage">
+    <div class="feature" id="featureCard">
+      <div class="poster">
+        <div class="top-row">
+          <span class="rating"><span>★</span> 8.6</span>
+          <span class="year-tag">2023</span>
         </div>
-
+        <span class="initials">SD</span>
+        <div class="title-block">
+          <h2>Static District</h2>
+          <div class="genre">Sci-Fi</div>
+        </div>
+      </div>
+ 
+      <div class="details">
+        <span class="badge">Featured Film</span>
+        <h3>Static District</h3>
+        <div class="meta-row">
+          <span class="rate">★ 8.6</span>
+          <span>2023</span>
+          <span>Sci-Fi</span>
+          <span>2h 11m</span>
+        </div>
+        <p class="desc">
+          In a city where memory can be traded like currency, a black-market technician
+          uncovers a signal that isn't supposed to exist — one that remembers things
+          no one alive should know.
+        </p>
+        <div class="actions">
+          <button class="btn btn-primary" id="watchBtn">Watch trailer</button>
+          <button class="btn btn-ghost" id="saveBtn">Save for later</button>
+        </div>
+      </div>
     </div>
-
-</div>
-
+  </div>
+ 
+  <div class="filmstrip">
+    <div class="holes">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+ 
+  <footer>MovieFinder — Curated selection</footer>
 </body>
 </html>
