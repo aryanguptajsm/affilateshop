@@ -35,6 +35,7 @@
   .filmstrip{
     height:20px;
     display:flex;
+    margin-top: 50px;
     align-items:center;
     padding:0 18px;
     background: linear-gradient(90deg, var(--grey-950), var(--grey-900), var(--grey-950));
@@ -45,7 +46,6 @@
     flex:1;
     display:flex;
     justify-content:space-between;
-    margin-bottom: 50px;
   }
   .filmstrip .holes span{
     width:7px; height:7px; border-radius:2px;
