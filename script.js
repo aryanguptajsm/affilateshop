@@ -36,5 +36,4 @@ const actions = details.querySelector(".actions");
 const watchBtn = document.querySelector("#watchBtn");
 const saveBtn = document.querySelector("#saveBtn");
 
-// Footer
-const footer = document.querySelector("footer");
+console.log(searchInput.value);
