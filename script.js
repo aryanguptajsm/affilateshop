@@ -1,5 +1,5 @@
  const searchInput = document.querySelector("#searchInput");
-const movieName = searchInput.value;
+const movieName = searchInput.value.trim();
 const url = `https://www.omdbapi.com/?apikey=af3e0d4&t=${movieName}`;
 
 fetch(url)
