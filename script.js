@@ -7,6 +7,18 @@ searchInput.addEventListener("keydown", function(event) {
     urlfetch();   
   }
 });
+
+const featureCard = document.querySelector("#featureCard");
+const posterContainer = document.querySelector(".poster");
+const cardTitle = document.querySelector(".title-block h2");
+const cardGenre = document.querySelector(".title-block .genre");
+const detailsTitle = document.querySelector(".details h3");
+const descText = document.querySelector(".desc");
+
+const topRowRating = document.querySelector(".top-row .rating");
+const topRowYear = document.querySelector(".year-tag");
+const metaRow = document.querySelector(".meta-row");
+
 function urlfetch(){
      const url = `https://www.omdbapi.com/?apikey=af3e0d4&t=${searchInput.value}`;
 
@@ -15,13 +27,13 @@ fetch(url)
     .then(data => {
        console.log(data.Title, data.Runtime);
        // title.textContent = data.Title;
-       // year.textContent = data.Year;
-       // rating.textContent = data.imdbRating;
+        topRowYear.textContent = data.Year;
+        topRowRating.textContent = data.imdbRating;
        // genre.textContent = data.Genre;
        // runtime.textContent = data.Runtime;
        // director.textContent = data.Director;
        //////////// plot.textContent = data.Plot;
-       // poster.src = data.Poster;//
+        posterContainer.src = data.Poster;
 
     });         
 }
