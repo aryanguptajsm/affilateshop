@@ -20,19 +20,24 @@ const topRowYear = document.querySelector(".year-tag");
 const metaRow = document.querySelector(".meta-row");
 
 function urlfetch(){
-     const url = `https://www.omdbapi.com/?apikey=af3e0d4&t=${searchInput.value}`;
+     const url = `https://www.omdbapi.com/?apikey=af3e0d4&t=${searchInput.value.trim()}`;
 
 fetch(url)
     .then(response => response.json())
     .then(data => {
        console.log(data);
-       console.log(data.Title, data.Runtime);
+
        cardTitle.textContent = data.Title;
         topRowYear.textContent = data.Year;
         topRowRating.textContent = data.imdbRating;
-       detailsTitle.textContent = data.Title;
-       // runtime.textContent = data.Runtime;
-       // director.textContent = data.Director;
+       detailsTitle.textContent = data.Title; 
+
+        metaRow.innerHTML = `
+        <span class="rate">★ ${data.imdbRating}</span>
+        <span>${data.Year}</span>
+        <span>${data.Genre}</span>
+        <span>${data.Runtime}</span>
+      `;
        descText.textContent = data.Plot;
         posterContainer.src = data.Poster;
 
