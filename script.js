@@ -4,7 +4,11 @@ searchInput.addEventListener("keydown", function(event) {
   
   if (event.key === "Enter") {
     event.preventDefault(); 
-    const url = `https://www.omdbapi.com/?apikey=af3e0d4&t=${searchInput}`;
+    urlfetch();   
+  }
+});
+function urlfetch(){
+     const url = `https://www.omdbapi.com/?apikey=af3e0d4&t=${searchInput}`;
 
 fetch(url)
     .then(response => response.json())
@@ -20,8 +24,6 @@ fetch(url)
        // poster.src = data.Poster;//
 
     });         
-  }
-});
-
+}
 
 
