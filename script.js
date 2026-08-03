@@ -25,14 +25,15 @@ function urlfetch(){
 fetch(url)
     .then(response => response.json())
     .then(data => {
+       console.log(data);
        console.log(data.Title, data.Runtime);
-       // title.textContent = data.Title;
+       cardTitle.textContent = data.Title;
         topRowYear.textContent = data.Year;
         topRowRating.textContent = data.imdbRating;
-       // genre.textContent = data.Genre;
+       detailsTitle.textContent = data.Title;
        // runtime.textContent = data.Runtime;
        // director.textContent = data.Director;
-       //////////// plot.textContent = data.Plot;
+       descText.textContent = data.Plot;
         posterContainer.src = data.Poster;
 
     });         
