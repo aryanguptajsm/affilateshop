@@ -9,6 +9,7 @@ searchInput.addEventListener("keydown", function(event) {
 });
 
 const featureCard = document.querySelector("#featureCard");
+const featureimg = featureCard.querySelector("img");
 const posterContainer = document.querySelector(".poster");
 const cardTitle = document.querySelector(".title-block h2");
 const cardGenre = document.querySelector(".title-block .genre");
@@ -39,7 +40,7 @@ fetch(url)
         <span>${data.Runtime}</span>
       `;
        descText.textContent = data.Plot;
-        posterContainer.src = data.Poster;
+        featureimg.src = data.Poster;
 
     });         
 }

@@ -191,6 +191,12 @@
     border-radius:999px;
     border:1px solid rgba(255,255,255,0.14);
   }
+  .poster {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
  
   .poster .initials{
     position:relative;
