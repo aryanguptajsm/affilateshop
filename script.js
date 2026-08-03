@@ -8,12 +8,12 @@ searchInput.addEventListener("keydown", function(event) {
   }
 });
 function urlfetch(){
-     const url = `https://www.omdbapi.com/?apikey=af3e0d4&t=${searchInput}`;
+     const url = `https://www.omdbapi.com/?apikey=af3e0d4&t=${searchInput.value}`;
 
 fetch(url)
     .then(response => response.json())
     .then(data => {
-       console.log(data.Title);
+       console.log(data.Title, data.Runtime);
        // title.textContent = data.Title;
        // year.textContent = data.Year;
        // rating.textContent = data.imdbRating;
