@@ -1,6 +1,6 @@
  const searchInput = document.querySelector("#searchInput");
-
-const url = "https://www.omdbapi.com/?apikey=af3e0d4&t=batman";
+const movieName = searchInput.value;
+const url = `https://www.omdbapi.com/?apikey=af3e0d4&t=${movieName}`;
 
 fetch(url)
     .then(response => response.json())
