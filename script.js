@@ -21,7 +21,8 @@ const topRowRating = document.querySelector(".top-row .rating");
 const topRowYear = document.querySelector(".year-tag");
 const metaRow = document.querySelector(".meta-row");
 
-const trailer = document.querySelector("#watchBtn")
+const trailer = document.querySelector("#watchBtn");
+ 
 
 function urlfetch(){
    //  const url = `https://www.omdbapi.com/?apikey=af3e0d4&t=${searchInput.value.trim()}`;
@@ -35,18 +36,24 @@ fetch(url)
 
        cardTitle.textContent = data[0].show.name;
         topRowYear.textContent = data[0].show.premiered;
-        topRowRating.textContent = data[0].show.rating.average;
+        topRowRating.textContent = data[0].show.rating.average ?? "N/A";
        detailsTitle.textContent = data[0].show.name; 
       cardGenre.textContent = data[0].show.genres[0];
 
         metaRow.innerHTML = `
-        <span class="rate">★ ${data[0].show.rating.average}</span>
+        <span class="rate">★ ${data[0].show.rating.average ?? "N/A"}</span>
         <span>${data[0].show.premiered}</span>
         <span>${data[0].show.genres}</span>`;
        descText.innerHTML = data[0].show.summary;
         featureimg.src = data[0].show.image.original;
+      
+       trailerUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(data[0].show.name + " official trailer")}`;
 
-    });         
+        trailer.onclick = ()=>{
+   window.open(trailerUrl, "_blank");
+
+    };
+    });        
 }
 
 
