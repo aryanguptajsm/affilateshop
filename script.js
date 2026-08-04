@@ -16,9 +16,12 @@ const cardGenre = document.querySelector(".title-block .genre");
 const detailsTitle = document.querySelector(".details h3");
 const descText = document.querySelector(".desc");
 
+
 const topRowRating = document.querySelector(".top-row .rating");
 const topRowYear = document.querySelector(".year-tag");
 const metaRow = document.querySelector(".meta-row");
+
+const trailer = document.querySelector("#watchBtn")
 
 function urlfetch(){
    //  const url = `https://www.omdbapi.com/?apikey=af3e0d4&t=${searchInput.value.trim()}`;
