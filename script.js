@@ -40,7 +40,7 @@ fetch(url)
         <span class="rate">★ ${data[0].show.rating.average}</span>
         <span>${data[0].show.premiered}</span>
         <span>${data[0].show.genres}</span>`;
-       descText.textContent = data[0].show.summary;
+       descText.innerHTML = data[0].show.summary;
         featureimg.src = data[0].show.image.original;
 
     });         
