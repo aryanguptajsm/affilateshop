@@ -31,7 +31,7 @@ fetch(url)
        console.log(data[0].show.name);
 
        cardTitle.textContent = data[0].show.name;
-        topRowYear.textContent = data.Year;
+        topRowYear.textContent = data[0].show.premiered;
         topRowRating.textContent = data[0].show.rating.average;
        detailsTitle.textContent = data[0].show.name; 
       cardGenre.textContent = data[0].show.genres[0];
