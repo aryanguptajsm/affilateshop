@@ -22,6 +22,7 @@ const topRowYear = document.querySelector(".year-tag");
 const metaRow = document.querySelector(".meta-row");
 
 const trailer = document.querySelector("#watchBtn");
+const savebtn = document.querySelector("#saveBtn");
  
 
 function urlfetch(){
@@ -53,6 +54,17 @@ fetch(url)
    window.open(trailerUrl, "_blank");
 
     };
+    const dataofthis = data[0].show;
+    function saved(){
+    if(!dataofthis === ""){
+      localStorage.setItem( "saved" ,Json.stringify(dataofthis));
+    }
+   }
+    
+     savebtn.onclick = ()=>{
+    saved();
+    savebtn.textContent = "Saved";
+     };
 
 
     })  
@@ -69,5 +81,6 @@ fetch(url)
      }); 
     
 }
+
 
 
