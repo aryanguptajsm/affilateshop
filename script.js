@@ -53,7 +53,21 @@ fetch(url)
    window.open(trailerUrl, "_blank");
 
     };
-    });        
+
+
+    })  
+     .catch(error => {
+          
+            console.error("Error fetching data:", error);
+             detailsTitle.textContent = "error"; 
+            cardTitle.textContent = "Error";
+            descText.textContent =  "Something went wrong. Please try again.";
+            
+            topRowRating.textContent = "N/A";
+            featureimg.src = ""; 
+            trailerUrl = "";
+     }); 
+    
 }
 
 
