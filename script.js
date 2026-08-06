@@ -186,6 +186,6 @@ function createFeatureCard() {
 }
 
 // Example usage:
-document.body.appendChild(createFeatureCard());
+document.body.controls.appendChild(createFeatureCard());
 
 
