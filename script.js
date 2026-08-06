@@ -81,6 +81,111 @@ fetch(url)
      }); 
     
 }
+function createFeatureCard() {
+  // 1. Root stage container
+  const stage = document.createElement("div");
+  stage.className = "stage";
 
+  // 2. Feature Card
+  const feature = document.createElement("div");
+  feature.className = "feature";
+  feature.id = "featureCard";
+
+  // --- POSTER SECTION ---
+  const poster = document.createElement("div");
+  poster.className = "poster";
+
+  const topRow = document.createElement("div");
+  topRow.className = "top-row";
+
+  const rating = document.createElement("span");
+  rating.className = "rating";
+  rating.innerHTML = "<span>★</span> 8.6";
+
+  const yearTag = document.createElement("span");
+  yearTag.className = "year-tag";
+  yearTag.textContent = "2023";
+
+  topRow.append(rating, yearTag);
+
+  const initials = document.createElement("span");
+  initials.className = "initials";
+  const img = document.createElement("img");
+  img.src = "https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_QL75_UX380_CR0,0,380,562_.jpg";
+  img.alt = "SD";
+  initials.appendChild(img);
+
+  const titleBlock = document.createElement("div");
+  titleBlock.className = "title-block";
+
+  const posterTitle = document.createElement("h2");
+  posterTitle.textContent = "Static District";
+
+  const genre = document.createElement("div");
+  genre.className = "genre";
+  genre.textContent = "Sci-Fi";
+
+  titleBlock.append(posterTitle, genre);
+  poster.append(topRow, initials, titleBlock);
+
+  // --- DETAILS SECTION ---
+  const details = document.createElement("div");
+  details.className = "details";
+
+  const badge = document.createElement("span");
+  badge.className = "badge";
+  badge.textContent = "Featured Film";
+
+  const detailsTitle = document.createElement("h3");
+  detailsTitle.textContent = "Static District";
+
+  const metaRow = document.createElement("div");
+  metaRow.className = "meta-row";
+
+  const rateSpan = document.createElement("span");
+  rateSpan.className = "rate";
+  rateSpan.textContent = "★ 8.6";
+
+  const yearSpan = document.createElement("span");
+  yearSpan.textContent = "2023";
+
+  const genreSpan = document.createElement("span");
+  genreSpan.textContent = "Sci-Fi ";
+
+  const durationSpan = document.createElement("span");
+  durationSpan.textContent = "2h 11m";
+
+  metaRow.append(rateSpan, yearSpan, genreSpan, durationSpan);
+
+  const desc = document.createElement("p");
+  desc.className = "desc";
+  desc.textContent =
+    "In a city where memory can be traded like currency, a black-market technician uncovers a signal that isn't supposed to exist — one that remembers things no one alive should know.";
+
+  const actions = document.createElement("div");
+  actions.className = "actions";
+
+  const watchBtn = document.createElement("button");
+  watchBtn.className = "btn btn-primary";
+  watchBtn.id = "watchBtn";
+  watchBtn.textContent = "Watch trailer";
+
+  const saveBtn = document.createElement("button");
+  saveBtn.className = "btn btn-ghost";
+  saveBtn.id = "saveBtn";
+  saveBtn.textContent = "Save for later";
+
+  actions.append(watchBtn, saveBtn);
+  details.append(badge, detailsTitle, metaRow, desc, actions);
+
+  // Assemble full card
+  feature.append(poster, details);
+  stage.appendChild(feature);
+
+  return stage;
+}
+
+// Example usage:
+document.body.appendChild(createFeatureCard());
 
 
