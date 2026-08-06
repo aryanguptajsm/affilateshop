@@ -73,14 +73,34 @@ function urlfetch() {
 
       // Save Button - Fixed JSON typo
       saveBtn.onclick = () => {
+        // Inside your fetch(url).then(...) code:
+      
+      saveBtn.onclick = () => {
         if (show) {
-          localStorage.setItem("saved", JSON.stringify(show)); // Fixed capitalization
+          // 1. Get existing saved shows from localStorage, or create an empty array if none exist
+          let savedList = JSON.parse(localStorage.getItem("myWatchlist")) || [];
+
+          // 2. Check if the show is already in the list (using the TVMaze show ID)
+          const isAlreadySaved = savedList.some(savedItem => savedItem.id === show.id);
+
+          if (!isAlreadySaved) {
+            // 3. Add the new show to the array
+            savedList.push(show);
+            
+            // 4. Save the updated array back to localStorage
+            localStorage.setItem("myWatchlist", JSON.stringify(savedList));
+          }
+          
+          // Update the button text so the user knows it worked
           saveBtn.textContent = "Saved";
+          saveBtn.disabled = true; // Optional: disable the button so they don't click it twice
         }
       };
-      
-      // Reset save button text when a new search happens
+
+      // Reset the button when a new search happens
       saveBtn.textContent = "Save for later";
+      saveBtn.disabled = false;
+      };
     })  
     .catch(error => {
        console.error("Error fetching data:", error);
