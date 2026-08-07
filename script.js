@@ -40,11 +40,11 @@ function urlfetch() {
       detailsTitle.textContent = show.name; 
       descText.innerHTML = show.summary || "No description available.";
       
-      // Update Genre
+     
       const genre = show.genres[0] || "Unknown";
       cardGenre.textContent = genre;
 
-      // Update Year (Extract just the year from "2023-10-15")
+   
       const year = show.premiered ? show.premiered.substring(0, 4) : "N/A";
       topRowYear.textContent = year;
 
