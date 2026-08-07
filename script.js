@@ -1,4 +1,3 @@
-// Helper function to safely get the watchlist and guarantee it's an array
 function getWatchlist() {
   try {
     const list = JSON.parse(localStorage.getItem("myWatchlist"));
@@ -8,16 +7,16 @@ function getWatchlist() {
   }
 }
 
-// 1. Get the search input and the search bar container
+
 const searchInput = document.querySelector("#searchInput");
 const searchbar = document.querySelector(".controls"); 
 
-// 2. Create the empty feature card and put it directly AFTER the search bar
+
 const stageElement = createFeatureCard();
-stageElement.style.display = "none"; // HIDE INITIALLY BEFORE SEARCH
+stageElement.style.display = "none";
 searchbar.after(stageElement);
 
-// 3. NOW that the card is in the DOM, we can safely select its inner elements
+
 const cardTitle = document.querySelector(".title-block h2");
 const cardGenre = document.querySelector(".title-block .genre");
 const detailsTitle = document.querySelector(".details h3"); 
@@ -29,10 +28,10 @@ const featureImg = document.querySelector(".initials img");
 const watchBtn = document.querySelector("#watchBtn");
 const saveBtn = document.querySelector("#saveBtn");
 
-// Initialize Watchlist UI on window load
+
 document.addEventListener("DOMContentLoaded", displaySavedShows);
 
-// 4. Search Event Listener
+
 searchInput.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
     event.preventDefault(); 
@@ -40,9 +39,9 @@ searchInput.addEventListener("keydown", function(event) {
   }
 });
 
-// --- NEW REUSABLE FUNCTION: Populates the main card ---
+
 function renderShowOnCard(show) {
-  // Show the card container
+ 
   stageElement.style.display = "block";
 
   cardTitle.textContent = show.name;
@@ -55,11 +54,11 @@ function renderShowOnCard(show) {
   const year = show.premiered ? show.premiered.substring(0, 4) : "N/A";
   topRowYear.textContent = year;
 
-  // Update Rating
+ 
   const avgRating = show.rating?.average || "N/A";
   topRowRating.innerHTML = `<span>★</span> ${avgRating}`;
 
-  // Update Meta Row
+ 
   const runtime = show.runtime ? `${show.runtime}m` : "N/A";
   metaRow.innerHTML = `
     <span class="rate">★ ${avgRating}</span>
@@ -68,10 +67,10 @@ function renderShowOnCard(show) {
     <span>${runtime}</span>
   `;
   
-  // Update Image safely using optional chaining
+ 
   featureImg.src = show.image?.original || "https://via.placeholder.com/380x562?text=No+Image+Available";
   
-  // Trailer Button
+ 
   watchBtn.onclick = () => {
     const trailerUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(show.name + " official trailer")}`;
     window.open(trailerUrl, "_blank");
