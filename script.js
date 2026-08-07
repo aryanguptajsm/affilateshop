@@ -31,11 +31,11 @@ function urlfetch() {
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      if (data.length === 0) return; // Stop if no movie was found
+      if (data.length === 0) return; 
 
-      const show = data[0].show; // Save this to a variable to make code cleaner
+      const show = data[0].show; 
 
-      // Update text elements safely
+      
       cardTitle.textContent = show.name;
       detailsTitle.textContent = show.name; 
       descText.innerHTML = show.summary || "No description available.";
@@ -73,7 +73,7 @@ function urlfetch() {
 
       // Save Button - Fixed JSON typo
       saveBtn.onclick = () => {
-        // Inside your fetch(url).then(...) code:
+        
       
       saveBtn.onclick = () => {
         if (show) {
@@ -126,18 +126,18 @@ function createFeatureCard() {
  
   const rating = document.createElement("span");
   rating.className = "rating";
-  rating.innerHTML = "<span>★</span> -.-";
+  rating.innerHTML = "<span>★</span> N/A";
 
   const yearTag = document.createElement("span");
   yearTag.className = "year-tag";
-  yearTag.textContent = "----";
+  yearTag.textContent = "N/A";
 
   topRow.append(rating, yearTag);
 
   const initials = document.createElement("span");
   initials.className = "initials";
   const img = document.createElement("img");
-  img.src = "https://via.placeholder.com/380x562?text=Search+a+Movie"; // Default placeholder
+  img.src = "https://via.placeholder.com/80x562?text=Search+a+Movie"; // Default placeholder
   img.alt = "Poster";
   initials.appendChild(img);
 
