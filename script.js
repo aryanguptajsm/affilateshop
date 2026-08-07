@@ -77,7 +77,7 @@ function renderShowOnCard(show) {
     window.open(trailerUrl, "_blank");
   };
 
-  // Check if show is already in localStorage using the safe helper
+  
   let savedList = getWatchlist();
   const isAlreadySaved = savedList.some(savedItem => savedItem.id === show.id);
 
@@ -89,7 +89,7 @@ function renderShowOnCard(show) {
     saveBtn.disabled = false;
   }
 
-  // Save Button 
+  
   saveBtn.onclick = () => {
     if (show) {
       let currentList = getWatchlist();
@@ -110,7 +110,7 @@ function renderShowOnCard(show) {
 function urlfetch() {
   const query = searchInput.value.trim();
   
-  // If the user searches an empty string, hide the card and do nothing
+ 
   if (!query) {
     stageElement.style.display = "none";
     return;
@@ -130,7 +130,7 @@ function urlfetch() {
         return; 
       }
 
-      // Use the new reusable function
+    
       const show = data[0].show; 
       renderShowOnCard(show);
     })  
@@ -141,7 +141,7 @@ function urlfetch() {
     }); 
 }
 
-// 5. Function to build the layout visually
+
 function createFeatureCard() {
   const stage = document.createElement("div");
   stage.className = "stage";
@@ -150,7 +150,7 @@ function createFeatureCard() {
   feature.className = "feature";
   feature.id = "featureCard";
 
-  // --- POSTER SECTION ---
+
   const poster = document.createElement("div");
   poster.className = "poster";
 
@@ -187,7 +187,7 @@ function createFeatureCard() {
   titleBlock.append(posterTitle, genre);
   poster.append(topRow, initials, titleBlock);
 
-  // --- DETAILS SECTION ---
+  
   const details = document.createElement("div");
   details.className = "details";
 
@@ -221,14 +221,14 @@ function createFeatureCard() {
   actions.append(watchBtnElem, saveBtnElem);
   details.append(badge, detailsH3, metaDiv, desc, actions);
 
-  // Assemble full card
+  
   feature.append(poster, details);
   stage.appendChild(feature);
  
   return stage;
 }
 
-// 6. Function to render the Saved Shows on reload
+
 function displaySavedShows() {
   let savedList = getWatchlist();
   
