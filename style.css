@@ -453,7 +453,7 @@
  
   footer{
     text-align:center;
-    margin-top:6                  6px;
+    margin-top:56px;
     color:var(--muted);
     font-family:'Space Mono', monospace;
     font-size:11px;
@@ -469,20 +469,9 @@
       gap:24px;
     }
     .poster{ max-width:280px; margin:0 auto; width:100%; }
-    .watchlist-card{
-   
-    width:175px;
-  }
-  .watchlist-remove-btn{
-   
-    width:150px;
-   
-  }
-  .watchlist-image{
-    width:150px;
-                                                                              
-  }
-
+    .watchlist-card{  width:175px;  }
+  .watchlist-remove-btn{ width:150px; }
+  .watchlist-image{ width:150px;}
   }
  
   @media (max-width:480px){
