@@ -306,16 +306,16 @@ function displaySavedShows() {
   });
 }
 
-// 7. Function to view a saved show (Clicking the saved card)
+
 window.viewSavedShow = function(id) {
   let savedList = getWatchlist();
   let show = savedList.find(s => s.id === id);
   
   if (show) {
-    // Populate the main card with this show's data
+  
     renderShowOnCard(show);
     
-    // Smoothly scroll the user back to the top to see the poster
+    
     window.scrollTo({
       top: 0,
       behavior: "smooth"
@@ -323,7 +323,7 @@ window.viewSavedShow = function(id) {
   }
 };
 
-// 8. Function to remove a show from the list
+
 window.removeShow = function(id) {
   let savedList = getWatchlist();
   
