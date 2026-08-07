@@ -274,7 +274,7 @@ function displaySavedShows() {
     body.className = "watchlist-card-body";
     body.onclick = () => viewSavedShow(show.id);
 
-    const imgUrl = show.image?.medium || "https://via.placeholder.com/150x210?text=No+Image";
+    const imgUrl = show.image?.medium || "https://static.tvmaze.com/uploads/images/original_untouched/501/1253519.jpg";
     const img = document.createElement("img");
     img.className = "watchlist-image";
     img.src = imgUrl;
