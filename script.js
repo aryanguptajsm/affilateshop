@@ -1,14 +1,26 @@
+// Helper function to safely get the watchlist and guarantee it's an array
+function getWatchlist() {
+  try {
+    const list = JSON.parse(localStorage.getItem("myWatchlist"));
+    return Array.isArray(list) ? list : [];
+  } catch (error) {
+    return []; 
+  }
+}
+
 // 1. Get the search input and the search bar container
 const searchInput = document.querySelector("#searchInput");
-const searchbar = document.querySelector(".controls"); // Ensure this matches your HTML search bar class!
+const searchbar = document.querySelector(".controls"); 
 
 // 2. Create the empty feature card and put it directly AFTER the search bar
-searchbar.after(createFeatureCard());
+const stageElement = createFeatureCard();
+stageElement.style.display = "none"; // HIDE INITIALLY BEFORE SEARCH
+searchbar.after(stageElement);
 
-// 3. NOW that the card is in the DOM, we can safely select its inner elements to update later
+// 3. NOW that the card is in the DOM, we can safely select its inner elements
 const cardTitle = document.querySelector(".title-block h2");
 const cardGenre = document.querySelector(".title-block .genre");
-const detailsTitle = document.querySelector(".details h3"); // Fixed: Target the h3 specifically
+const detailsTitle = document.querySelector(".details h3"); 
 const descText = document.querySelector(".desc");
 const topRowRating = document.querySelector(".top-row .rating");
 const topRowYear = document.querySelector(".year-tag");
@@ -16,6 +28,9 @@ const metaRow = document.querySelector(".meta-row");
 const featureImg = document.querySelector(".initials img");
 const watchBtn = document.querySelector("#watchBtn");
 const saveBtn = document.querySelector("#saveBtn");
+
+// Initialize Watchlist UI on window load
+document.addEventListener("DOMContentLoaded", displaySavedShows);
 
 // 4. Search Event Listener
 searchInput.addEventListener("keydown", function(event) {
@@ -25,85 +40,103 @@ searchInput.addEventListener("keydown", function(event) {
   }
 });
 
+// --- NEW REUSABLE FUNCTION: Populates the main card ---
+function renderShowOnCard(show) {
+  // Show the card container
+  stageElement.style.display = "block";
+
+  cardTitle.textContent = show.name;
+  detailsTitle.textContent = show.name; 
+  descText.innerHTML = show.summary || "No description available.";
+  
+  const genre = show.genres && show.genres.length > 0 ? show.genres[0] : "Unknown";
+  cardGenre.textContent = genre;
+
+  const year = show.premiered ? show.premiered.substring(0, 4) : "N/A";
+  topRowYear.textContent = year;
+
+  // Update Rating
+  const avgRating = show.rating?.average || "N/A";
+  topRowRating.innerHTML = `<span>★</span> ${avgRating}`;
+
+  // Update Meta Row
+  const runtime = show.runtime ? `${show.runtime}m` : "N/A";
+  metaRow.innerHTML = `
+    <span class="rate">★ ${avgRating}</span>
+    <span>${year}</span>
+    <span>${genre}</span>
+    <span>${runtime}</span>
+  `;
+  
+  // Update Image safely using optional chaining
+  featureImg.src = show.image?.original || "https://via.placeholder.com/380x562?text=No+Image+Available";
+  
+  // Trailer Button
+  watchBtn.onclick = () => {
+    const trailerUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(show.name + " official trailer")}`;
+    window.open(trailerUrl, "_blank");
+  };
+
+  // Check if show is already in localStorage using the safe helper
+  let savedList = getWatchlist();
+  const isAlreadySaved = savedList.some(savedItem => savedItem.id === show.id);
+
+  if (isAlreadySaved) {
+    saveBtn.textContent = "Saved";
+    saveBtn.disabled = true;
+  } else {
+    saveBtn.textContent = "Save for later";
+    saveBtn.disabled = false;
+  }
+
+  // Save Button 
+  saveBtn.onclick = () => {
+    if (show) {
+      let currentList = getWatchlist();
+      const alreadyExists = currentList.some(savedItem => savedItem.id === show.id);
+
+      if (!alreadyExists) {
+        currentList.push(show);
+        localStorage.setItem("myWatchlist", JSON.stringify(currentList));
+        displaySavedShows();
+      }
+      
+      saveBtn.textContent = "Saved";
+      saveBtn.disabled = true; 
+    }
+  };
+}
+
 function urlfetch() {
-  const url = `https://api.tvmaze.com/search/shows?q=${searchInput.value.trim()}`;
+  const query = searchInput.value.trim();
+  
+  // If the user searches an empty string, hide the card and do nothing
+  if (!query) {
+    stageElement.style.display = "none";
+    return;
+  }
+
+  const url = `https://api.tvmaze.com/search/shows?q=${query}`;
 
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      if (data.length === 0) return; 
+      if (data.length === 0) {
+        stageElement.style.display = "block";
+        descText.textContent = "No results found. Try another search.";
+        cardTitle.textContent = "No Results";
+        detailsTitle.textContent = "No Results";
+        featureImg.src = "https://via.placeholder.com/380x562?text=No+Results";
+        return; 
+      }
 
+      // Use the new reusable function
       const show = data[0].show; 
-
-      
-      cardTitle.textContent = show.name;
-      detailsTitle.textContent = show.name; 
-      descText.innerHTML = show.summary || "No description available.";
-      
-     
-      const genre = show.genres[0] || "Unknown";
-      cardGenre.textContent = genre;
-
-   
-      const year = show.premiered ? show.premiered.substring(0, 4) : "N/A";
-      topRowYear.textContent = year;
-
-      // Update Rating
-      const avgRating = show.rating.average || "N/A";
-      topRowRating.innerHTML = `<span>★</span> ${avgRating}`;
-
-      // Update Meta Row
-      const runtime = show.runtime ? `${show.runtime}m` : "N/A";
-      metaRow.innerHTML = `
-        <span class="rate">★ ${avgRating}</span>
-        <span>${year}</span>
-        <span>${genre}</span>
-        <span>${runtime}</span>
-      `;
-      
-      // Update Image safely using optional chaining (?.)
-      // If no image exists, it uses a placeholder image instead of crashing
-      featureImg.src = show.image?.original || "https://via.placeholder.com/380x562?text=No+Image+Available";
-      
-      // Trailer Button
-      watchBtn.onclick = () => {
-        const trailerUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(show.name + " official trailer")}`;
-        window.open(trailerUrl, "_blank");
-      };
-
-      // Save Button - Fixed JSON typo
-      saveBtn.onclick = () => {
-        
-      
-      saveBtn.onclick = () => {
-        if (show) {
-          // 1. Get existing saved shows from localStorage, or create an empty array if none exist
-          let savedList = JSON.parse(localStorage.getItem("myWatchlist")) || [];
-
-          // 2. Check if the show is already in the list (using the TVMaze show ID)
-          const isAlreadySaved = savedList.some(savedItem => savedItem.id === show.id);
-
-          if (!isAlreadySaved) {
-            // 3. Add the new show to the array
-            savedList.push(show);
-            
-            // 4. Save the updated array back to localStorage
-            localStorage.setItem("myWatchlist", JSON.stringify(savedList));
-          }
-          
-          // Update the button text so the user knows it worked
-          saveBtn.textContent = "Saved";
-          saveBtn.disabled = true; // Optional: disable the button so they don't click it twice
-        }
-      };
-
-      // Reset the button when a new search happens
-      saveBtn.textContent = "Save for later";
-      saveBtn.disabled = false;
-      };
+      renderShowOnCard(show);
     })  
     .catch(error => {
        console.error("Error fetching data:", error);
+       stageElement.style.display = "block";
        descText.textContent = "Something went wrong. Please try again.";
     }); 
 }
@@ -137,7 +170,7 @@ function createFeatureCard() {
   const initials = document.createElement("span");
   initials.className = "initials";
   const img = document.createElement("img");
-  img.src = "https://via.placeholder.com/80x562?text=Search+a+Movie"; // Default placeholder
+  img.src = "https://via.placeholder.com/80x562?text=Search+a+Movie"; 
   img.alt = "Poster";
   initials.appendChild(img);
 
@@ -167,7 +200,6 @@ function createFeatureCard() {
 
   const metaDiv = document.createElement("div");
   metaDiv.className = "meta-row";
-  // We leave this empty because we populate it with innerHTML during the fetch
 
   const desc = document.createElement("p");
   desc.className = "desc";
@@ -195,3 +227,88 @@ function createFeatureCard() {
  
   return stage;
 }
+
+// 6. Function to render the Saved Shows on reload
+function displaySavedShows() {
+  let savedList = getWatchlist();
+  
+  let watchlistContainer = document.querySelector("#watchlistContainer");
+  if (!watchlistContainer) {
+    watchlistContainer = document.createElement("div");
+    watchlistContainer.id = "watchlistContainer";
+    watchlistContainer.style.marginTop = "40px";
+    
+    document.querySelector(".stage").after(watchlistContainer);
+  }
+
+  watchlistContainer.innerHTML = `<h2 style="margin-bottom: 15px;">My Watchlist</h2>`;
+  
+  const grid = document.createElement("div");
+  grid.style.display = "flex";
+  grid.style.gap = "15px";
+  grid.style.flexWrap = "wrap";
+  watchlistContainer.appendChild(grid);
+
+  if (savedList.length === 0) {
+    grid.innerHTML = "<p>No saved shows yet. Search and save some!</p>";
+    return;
+  }
+
+  savedList.forEach(show => {
+    const item = document.createElement("div");
+    item.style.border = "1px solid #ccc";
+    item.style.padding = "10px";
+    item.style.borderRadius = "8px";
+    item.style.textAlign = "center";
+    item.style.width = "150px";
+    item.style.display = "flex";
+    item.style.flexDirection = "column";
+    item.style.justifyContent = "space-between";
+
+    const imgUrl = show.image?.medium || "https://via.placeholder.com/150x210?text=No+Image";
+    
+    // Wrapped the image and title in a clickable div that calls viewSavedShow()
+    item.innerHTML = `
+      <div onclick="viewSavedShow(${show.id})" style="cursor:pointer; flex-grow: 1;">
+        <img src="${imgUrl}" alt="${show.name}" style="width:100%; border-radius: 4px; transition: opacity 0.2s;" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
+        <h4 style="margin: 10px 0 10px;">${show.name}</h4>
+      </div>
+      <button onclick="removeShow(${show.id})" style="cursor:pointer; padding: 6px 10px; background: #ff4d4d; color: white; border: none; border-radius: 4px; width: 100%; font-weight: bold;">Remove</button>
+    `;
+    grid.appendChild(item);
+  });
+}
+
+// 7. Function to view a saved show (Clicking the saved card)
+window.viewSavedShow = function(id) {
+  let savedList = getWatchlist();
+  let show = savedList.find(s => s.id === id);
+  
+  if (show) {
+    // Populate the main card with this show's data
+    renderShowOnCard(show);
+    
+    // Smoothly scroll the user back to the top to see the poster
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+};
+
+// 8. Function to remove a show from the list
+window.removeShow = function(id) {
+  let savedList = getWatchlist();
+  
+  savedList = savedList.filter(show => show.id !== id);
+  localStorage.setItem("myWatchlist", JSON.stringify(savedList));
+  
+  displaySavedShows();
+  
+  let removedShowInfo = savedList.find(s => s.id === id); 
+  
+  if (!removedShowInfo) {
+      document.querySelector("#saveBtn").textContent = "Save for later";
+      document.querySelector("#saveBtn").disabled = false;
+  }
+};
