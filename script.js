@@ -68,7 +68,7 @@ function renderShowOnCard(show) {
   `;
   
  
-  featureImg.src = show.image?.original || "https://via.placeholder.com/380x562?text=No+Image+Available";
+  featureImg.src = show.image?.original || "";
   
  
   watchBtn.onclick = () => {
@@ -125,7 +125,7 @@ function urlfetch() {
         descText.textContent = "No results found. Try another search.";
         cardTitle.textContent = "No Results";
         detailsTitle.textContent = "No Results";
-        featureImg.src = "https://via.placeholder.com/380x562?text=No+Results";
+        featureImg.src = "";
         return; 
       }
 
@@ -169,7 +169,7 @@ function createFeatureCard() {
   const initials = document.createElement("span");
   initials.className = "initials";
   const img = document.createElement("img");
-  img.src = "https://via.placeholder.com/80x562?text=Search+a+Movie"; 
+  img.src = "https://static.tvmaze.com/uploads/images/original_untouched/501/1253519.jpg"; 
   img.alt = "Poster";
   initials.appendChild(img);
 
