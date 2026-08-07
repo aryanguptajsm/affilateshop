@@ -330,6 +330,120 @@
   }
   .btn-ghost:hover{ border-color:var(--red-dim); color:var(--red); }
  
+  /* ---------- Watchlist ---------- */
+  .watchlist-section{
+    max-width:920px;
+    margin:24px auto 0;
+    padding:0 24px 12px;
+  }
+
+  .watchlist-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin:0 0 18px;
+    padding:0 2px;
+  }
+
+  .watchlist-header h2{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:26px;
+    letter-spacing:0.01em;
+    color:var(--text);
+  }
+
+  .watchlist-header span{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  .watchlist-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(170px, 1fr));
+    gap:16px;
+  }
+
+  .watchlist-card{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:12px;
+    min-height:100%;
+    box-shadow:0 16px 36px -22px rgba(0,0,0,0.55);
+  }
+
+  .watchlist-card-body{
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+  }
+
+  .watchlist-image{
+    width:100%;
+    aspect-ratio:3 / 4.2;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,0.08);
+    background:var(--grey-800);
+  }
+
+  .watchlist-title{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:15px;
+    line-height:1.3;
+    color:var(--text);
+    margin:0;
+  }
+
+  .watchlist-meta{
+    font-family:'Space Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  .watchlist-remove-btn{
+    margin-top:10px;
+    width:100%;
+    border:none;
+    border-radius:10px;
+    padding:10px 12px;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    color:var(--text);
+    background:rgba(224,30,55,0.12);
+    border:1px solid rgba(224,30,55,0.2);
+    cursor:pointer;
+    transition:background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+
+  .watchlist-remove-btn:hover{
+    background:rgba(224,30,55,0.18);
+    border-color:var(--red-dim);
+    transform:translateY(-1px);
+  }
+
+  .watchlist-empty{
+    grid-column:1 / -1;
+    background:var(--glass);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:22px 20px;
+    color:var(--muted);
+    text-align:center;
+  }
+ 
   /* focus visibility */
   .search-bar input:focus-visible, .btn:focus-visible{
     outline:none;

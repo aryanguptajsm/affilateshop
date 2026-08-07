@@ -234,47 +234,74 @@ function displaySavedShows() {
   
   let watchlistContainer = document.querySelector("#watchlistContainer");
   if (!watchlistContainer) {
-    watchlistContainer = document.createElement("div");
+    watchlistContainer = document.createElement("section");
     watchlistContainer.id = "watchlistContainer";
-    watchlistContainer.style.marginTop = "40px";
+    watchlistContainer.className = "watchlist-section";
     
     document.querySelector(".stage").after(watchlistContainer);
   }
 
-  watchlistContainer.innerHTML = `<h2 style="margin-bottom: 15px;">My Watchlist</h2>`;
+  watchlistContainer.innerHTML = "";
+
+  const header = document.createElement("div");
+  header.className = "watchlist-header";
+
+  const title = document.createElement("h2");
+  title.textContent = "My Watchlist";
+
+  const count = document.createElement("span");
+  count.textContent = savedList.length > 0 ? `${savedList.length} saved` : "0 saved";
+
+  header.append(title, count);
+  watchlistContainer.appendChild(header);
   
   const grid = document.createElement("div");
-  grid.style.display = "flex";
-  grid.style.gap = "15px";
-  grid.style.flexWrap = "wrap";
+  grid.className = "watchlist-grid";
   watchlistContainer.appendChild(grid);
 
   if (savedList.length === 0) {
-    grid.innerHTML = "<p>No saved shows yet. Search and save some!</p>";
+    const empty = document.createElement("div");
+    empty.className = "watchlist-empty";
+    empty.textContent = "No saved shows yet. Search and save some!";
+    grid.appendChild(empty);
     return;
   }
 
   savedList.forEach(show => {
-    const item = document.createElement("div");
-    item.style.border = "1px solid #ccc";
-    item.style.padding = "10px";
-    item.style.borderRadius = "8px";
-    item.style.textAlign = "center";
-    item.style.width = "150px";
-    item.style.display = "flex";
-    item.style.flexDirection = "column";
-    item.style.justifyContent = "space-between";
+    const item = document.createElement("article");
+    item.className = "watchlist-card";
+
+    const body = document.createElement("div");
+    body.className = "watchlist-card-body";
+    body.onclick = () => viewSavedShow(show.id);
 
     const imgUrl = show.image?.medium || "https://via.placeholder.com/150x210?text=No+Image";
-    
-    // Wrapped the image and title in a clickable div that calls viewSavedShow()
-    item.innerHTML = `
-      <div onclick="viewSavedShow(${show.id})" style="cursor:pointer; flex-grow: 1;">
-        <img src="${imgUrl}" alt="${show.name}" style="width:100%; border-radius: 4px; transition: opacity 0.2s;" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">
-        <h4 style="margin: 10px 0 10px;">${show.name}</h4>
-      </div>
-      <button onclick="removeShow(${show.id})" style="cursor:pointer; padding: 6px 10px; background: #ff4d4d; color: white; border: none; border-radius: 4px; width: 100%; font-weight: bold;">Remove</button>
-    `;
+    const img = document.createElement("img");
+    img.className = "watchlist-image";
+    img.src = imgUrl;
+    img.alt = show.name;
+
+    const titleEl = document.createElement("h4");
+    titleEl.className = "watchlist-title";
+    titleEl.textContent = show.name;
+
+    const genre = show.genres && show.genres.length > 0 ? show.genres[0] : "Show";
+    const year = show.premiered ? show.premiered.substring(0, 4) : "N/A";
+    const meta = document.createElement("div");
+    meta.className = "watchlist-meta";
+    meta.textContent = `${genre} • ${year}`;
+
+    body.append(img, titleEl, meta);
+
+    const removeButton = document.createElement("button");
+    removeButton.className = "watchlist-remove-btn";
+    removeButton.textContent = "Remove";
+    removeButton.onclick = (event) => {
+      event.stopPropagation();
+      removeShow(show.id);
+    };
+
+    item.append(body, removeButton);
     grid.appendChild(item);
   });
 }
