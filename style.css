@@ -46,7 +46,7 @@
     position:fixed;
     left:0;
     right:0;
-    bottom:2px;
+    bottom:0px;
     z-index:20;
   }
   .filmstrip .holes{
