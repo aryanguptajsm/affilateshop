@@ -28,7 +28,7 @@
     color:var(--text);
     font-family:'Plus Jakarta Sans', sans-serif;
     min-height:100vh;
-    padding-bottom:60px;
+    padding-bottom:88px;
   }
  
   /* ---------- Film-strip signature divider ---------- */
@@ -40,6 +40,14 @@
     background: linear-gradient(90deg, var(--grey-950), var(--grey-900), var(--grey-950));
     border-bottom:1px solid var(--border);
     overflow:hidden;
+  }
+
+  .filmstrip.bottom-filmstrip{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:2px;
+    z-index:20;
   }
   .filmstrip .holes{
     flex:1;
@@ -451,14 +459,25 @@
     outline:none;
   }
  
-  footer{
+  footer.site-footer{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-align:center;
-    margin-top:56px;
+    margin-top:0;
     color:var(--muted);
     font-family:'Space Mono', monospace;
     font-size:11px;
     letter-spacing:0.08em;
     text-transform:uppercase;
+    background:rgba(6,6,6,0.95);
+    border-top:1px solid var(--border);
+    z-index:20;
   }
  
   /* ---------- Responsive ---------- */
