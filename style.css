@@ -341,8 +341,8 @@
  
   .watchlist-section{
     max-width:520px;
-    margin:                                                                               4px auto 0;
-    padding:0 4px 2px;
+    margin:10px auto 0;
+    padding:0px 10px 20px;
   }
 
   .watchlist-header{
