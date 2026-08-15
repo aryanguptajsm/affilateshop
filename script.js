@@ -112,7 +112,7 @@ function urlfetch() {
  
   if (!query) {
     stageElement.style.display = "none";
-
+      messeage();
     return;
   }
 
