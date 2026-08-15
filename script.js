@@ -112,6 +112,7 @@ function urlfetch() {
  
   if (!query) {
     stageElement.style.display = "none";
+
     return;
   }
 
@@ -139,7 +140,10 @@ function urlfetch() {
        descText.textContent = "Something went wrong. Please try again.";
     }); 
 }
-
+const
+function messeage(){
+ 
+};
 
 function createFeatureCard() {
   const stage = document.createElement("div");
