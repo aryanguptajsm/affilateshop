@@ -140,9 +140,12 @@ function urlfetch() {
        descText.textContent = "Something went wrong. Please try again.";
     }); 
 }
-const
+const messeages = null;
 function messeage(){
- 
+   messeages.createElement("div");
+   messeages.textContent = "Please enter show name "
+   messeages.classList.add("messeage");
+   
 };
 
 function createFeatureCard() {
