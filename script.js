@@ -11,7 +11,7 @@ function getWatchlist() {
 const searchInput = document.querySelector("#searchInput");
 const searchbar = document.querySelector(".controls"); 
 
-
+const messeages = null;
 const stageElement = createFeatureCard();
 stageElement.style.display = "none";
 searchbar.after(stageElement);
@@ -140,12 +140,12 @@ function urlfetch() {
        descText.textContent = "Something went wrong. Please try again.";
     }); 
 }
-const messeages = null;
+
 function messeage(){
    messeages.createElement("div");
    messeages.textContent = "Please enter show name "
    messeages.classList.add("messeage");
-   searchbar.appendChild(messeages);
+   searchbar.after(messeages);
    
 };
 
