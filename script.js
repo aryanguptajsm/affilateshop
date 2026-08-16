@@ -115,8 +115,9 @@ function urlfetch() {
     messeage();
    return;
   }
-  if(query === "Please enter show name "){
+  if(query || messeages === "Please enter show name "){
     Hidemesseage();
+    return;
   }
   const url = `https://api.tvmaze.com/search/shows?q=${query}`;
 
@@ -151,7 +152,7 @@ function messeage(){
    searchbar.after(messeages);
 };
 function Hidemesseage(){
-  messeages.textContent = "";
+  messeages.remove();
 }
 
 function createFeatureCard() {
