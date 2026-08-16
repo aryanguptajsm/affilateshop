@@ -110,15 +110,16 @@ function urlfetch() {
   const query = searchInput.value.trim();
   
  
-  if (!query) {
+  if (!query || messeages === ""
+   ) {
    stageElement.style.display = "none";
     messeage();
    return;
   }
-  if(query || messeages === "Please enter show name "){
-    Hidemesseage();
-    return;
-  }
+ // if(query || messeages === "Please enter show name "){
+   // Hidemesseage();
+  //   return;
+ // }
   const url = `https://api.tvmaze.com/search/shows?q=${query}`;
 
   fetch(url)
