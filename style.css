@@ -131,7 +131,7 @@
   }
   .search-bar input::placeholder{ color:var(--muted); }
   .messeage {
-      margin:5px 700px;
+      margin:5px 440px;
       font-size: large;
       width: 340px;
       font-weight:bolder;

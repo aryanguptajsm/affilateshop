@@ -116,10 +116,7 @@ function urlfetch() {
     messeage();
    return;
   }
- // if(query || messeages === "Please enter show name "){
-   // Hidemesseage();
-  //   return;
- // }
+   Hidemesseage();
   const url = `https://api.tvmaze.com/search/shows?q=${query}`;
 
   fetch(url)
@@ -146,15 +143,25 @@ function urlfetch() {
 }
 
 function messeage(){
+     if (messeages) {
+        return;
+    }
+
   messeages = document.createElement("div");
    messeages.textContent = "Please enter show name ";
    messeages.classList.add("messeage"); 
   
    searchbar.after(messeages);
 };
-function Hidemesseage(){
-  messeages.remove();
+
+function Hidemesseage() {
+
+    if (messeages) {
+        messeages.remove();
+        messeages = null;
+    }
 }
+
 
 function createFeatureCard() {
   const stage = document.createElement("div");
