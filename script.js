@@ -112,12 +112,12 @@ function urlfetch() {
  
   if (!query) {
    stageElement.style.display = "none";
-
- 
-      messeage();
+    messeage();
    return;
   }
-
+  if(query === "Please enter show name "){
+    Hidemesseage();
+  }
   const url = `https://api.tvmaze.com/search/shows?q=${query}`;
 
   fetch(url)
@@ -149,10 +149,10 @@ function messeage(){
    messeages.classList.add("messeage"); 
   
    searchbar.after(messeages);
-  
-
-   
 };
+function Hidemesseage(){
+  messeages.textContent = "";
+}
 
 function createFeatureCard() {
   const stage = document.createElement("div");
