@@ -112,6 +112,7 @@ function urlfetch() {
  
   if (!query) {
    stageElement.style.display = "none";
+ 
       messeage();
    return;
   }
@@ -142,9 +143,12 @@ function urlfetch() {
 }
 
 function messeage(){
+  
  const messeages = document.createElement("div");
    messeages.textContent = "Please enter show name "
-   messeages.classList.add("messeage");
+   messeages.classList.add("messeage"); 
+    messeages.textContent = "";
+
    searchbar.after(messeages);
    
 };
