@@ -11,7 +11,7 @@ function getWatchlist() {
 const searchInput = document.querySelector("#searchInput");
 const searchbar = document.querySelector(".controls"); 
 
-const messeages = null;
+
 const stageElement = createFeatureCard();
 stageElement.style.display = "none";
 searchbar.after(stageElement);
@@ -111,9 +111,9 @@ function urlfetch() {
   
  
   if (!query) {
-   //////////////////////////////////////////// stageElement.style.display = "none";
+   stageElement.style.display = "none";
       messeage();
-  //  return;
+   return;
   }
 
   const url = `https://api.tvmaze.com/search/shows?q=${query}`;
@@ -142,7 +142,7 @@ function urlfetch() {
 }
 
 function messeage(){
-   messeages.createElement("div");
+ const messeages = document.createElement("div");
    messeages.textContent = "Please enter show name "
    messeages.classList.add("messeage");
    searchbar.after(messeages);
