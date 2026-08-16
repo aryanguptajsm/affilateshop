@@ -130,6 +130,18 @@
     font-size:15px;
   }
   .search-bar input::placeholder{ color:var(--muted); }
+  .messeage {
+      margin:5px 700px;
+      font-size: large;
+      width: 340px;
+      font-weight:bolder;
+      padding:10px 50px;
+      border-radius: 10px;
+      color: #e01e37;
+
+      border: 1px solid var(--grey-800);
+      
+  }
  
   /* ---------- Featured film ---------- */
   .stage{

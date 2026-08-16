@@ -144,7 +144,6 @@ function urlfetch() {
 }
 
 function messeage(){
-  
   messeages = document.createElement("div");
    messeages.textContent = "Please enter show name ";
    messeages.classList.add("messeage"); 
