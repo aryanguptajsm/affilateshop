@@ -111,9 +111,9 @@ function urlfetch() {
   
  
   if (!query) {
-    stageElement.style.display = "none";
+   //////////////////////////////////////////// stageElement.style.display = "none";
       messeage();
-    return;
+  //  return;
   }
 
   const url = `https://api.tvmaze.com/search/shows?q=${query}`;
