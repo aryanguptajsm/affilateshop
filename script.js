@@ -113,7 +113,7 @@ function urlfetch() {
   if (!query) {
    stageElement.style.display = "none";
 
- if(messeages === "Please enter show name "){
+ if(messeages.textContent = "Please enter show name "){
      messeages.textContent = "";
   }
       messeage();
