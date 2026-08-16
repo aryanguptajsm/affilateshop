@@ -112,7 +112,10 @@ function urlfetch() {
  
   if (!query) {
    stageElement.style.display = "none";
- 
+
+ if(messeages === "Please enter show name "){
+     messeages.textContent = "";
+  }
       messeage();
    return;
   }
@@ -144,14 +147,12 @@ function urlfetch() {
 
 function messeage(){
   
- const messeages = document.createElement("div");
+ messeages = document.createElement("div");
    messeages.textContent = "Please enter show name ";
    messeages.classList.add("messeage"); 
   
    searchbar.after(messeages);
-   if(messeages.textContent === "Please enter show name "){
-     messeages.textContent = "";
-  }
+   
 };
 
 function createFeatureCard() {
