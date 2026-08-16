@@ -11,7 +11,7 @@ function getWatchlist() {
 const searchInput = document.querySelector("#searchInput");
 const searchbar = document.querySelector(".controls"); 
 
-
+ let messeages = null;
 const stageElement = createFeatureCard();
 stageElement.style.display = "none";
 searchbar.after(stageElement);
@@ -145,12 +145,13 @@ function urlfetch() {
 function messeage(){
   
  const messeages = document.createElement("div");
-   messeages.textContent = "Please enter show name "
+   messeages.textContent = "Please enter show name ";
    messeages.classList.add("messeage"); 
-    messeages.textContent = "";
-
+  
    searchbar.after(messeages);
-   
+   if(messeages.textContent === "Please enter show name "){
+     messeages.textContent = "";
+  }
 };
 
 function createFeatureCard() {
